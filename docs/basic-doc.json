@@ -1,0 +1,176 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger - Forcetech (API)",
+    "description": "Esta é uma documentação de uso interno e externo para Forcetech API. Voce pode saber mais sobre acessando [Forcetech System](http://forcetech-api.com) ou em [http://forcetech-api.com:443/docs/#SWAGGER](http://forcetech-api.com:443/docs/). Para este exemplo você pode usar uma api key `x-access-token` para testar a autorização de api.",
+    "termsOfService": "http://forcetech-api.com:443/terms/",
+    "contact": {
+      "email": "raul.ribeiro.ibati@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Saiba mais sobre o Forcetech System",
+    "url": "http://forcetech-api.com"
+  },
+  "security": [
+    {
+      "ApiKeyAuth": ["write:cards", "read:cards"]
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://18.231.92.221:443/",
+      "description": "Test server"
+    },
+    {
+      "url": "http://forcetech-api.com:443/",
+      "description": "Production Server"
+    },
+    {
+      "url": "http://localhost:3001/",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Usuário",
+      "description": "Tudo sobre autenticação de usuarios",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-users"
+      }
+    },
+    {
+      "name": "Ficha - Fiança Locaticia",
+      "description": "Tudo sobre a ficha para fiança locaticia",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-aluguel"
+      }
+    },
+    {
+      "name": "Ficha - Proteção imobiliaria",
+      "description": "Tudo sobre a ficha para proteção imobiliaria",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-protecao-imobiliaria"
+      }
+    }
+  ],
+  "paths": {
+    "/users/authenticate": {
+      "$ref":"./users/users.json#/paths/users_authenticate"
+    },
+
+    "/card-rental-bail": {
+      "$ref":"./rentalBail/rentalBail.json#/paths/card-rental-bail"
+    },
+    "/card-rental-bail/{cardId}": {
+      "$ref":"./rentalBail/rentalBail.json#/paths/card-rental-bail_{cardId}"
+    },
+    "/card-rental-bail/propose/{cardId}": {
+      "$ref":"./rentalBail/rentalBail.json#/paths/card-rental-bail_propose_{cardId}"
+    },
+    "/document/rental-bail/propose/{cardId}": {
+      "$ref":"./rentalBail/rentalBail.json#/paths/document_rental-bail_propose_{cardId}"
+    },
+    "/document/rental-bail/policy/{cardId}": {
+      "$ref":"./rentalBail/rentalBail.json#/paths/document_rental-bail_policy_{cardId}"
+    },
+
+    "/card-property-protection": {
+      "$ref":"./propertyProtection/propertyProtection.json#/paths/card-property-protection"
+    },
+    "/card-property-protection/{cardId}": {
+      "$ref":"./propertyProtection/propertyProtection.json#/paths/card-property-protection_{cardId}"
+    },
+    "/card-property-protection/propose/{cardId}": {
+      "$ref":"./propertyProtection/propertyProtection.json#/paths/card-property-protection_propose_{cardId}"
+    },
+    "/document/card-property-protection/propose/{cardId}": {
+      "$ref":"./propertyProtection/propertyProtection.json#/paths/card-property-protection_list"
+    },
+    "/document/card-property-protection/policy/{cardId}": {
+      "$ref":"./propertyProtection/propertyProtection.json#/paths/document_property-protection_porto-seguro_policy_{cardId}"
+    },
+    "/card-property-protection/policy/{cardId}": {
+      "$ref":"./propertyProtection/propertyProtection.json#/paths/card-property-protection_policy_{cardId}"
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserAuth": {
+        "$ref": "./users/models.json#/components/schemas/UserAuth"
+      },
+     
+
+      "CardRentalBail": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBail"
+      },
+      "CardRentalBailCreatedResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailCreatedResponse"
+      },
+      "CardRentalBailResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailResponse"
+      },
+      "CardRentalBailUpdate": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailUpdate"
+      },
+      "CardRentalBailContract": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailContract"
+      },
+      "CardRentalBailProposeResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailProposeResponse"
+      },
+    
+      "CardPropertyProtection": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtection"
+      },
+      "CardPropertyProtectionCreatedResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionCreatedResponse"
+      },
+      "CardPropertyProtectionResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionResponse"
+      },
+      "CardPropertyProtectionProposeResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionProposeResponse"
+      },
+      "CardPropertyProtectionPolicyDeleteResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionPolicyDeleteResponse"
+      },
+  
+      
+      "FileBase64": {
+        "$ref": "./api_doc_models.json#/components/schemas/FileBase64"
+      },
+      "Error": {
+        "$ref": "./api_doc_models.json#/components/schemas/Error"
+      },
+      "cardId": {
+        "$ref": "./api_doc_models.json#/components/schemas/cardId"
+      },
+      "page": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/page"
+      },
+      "limit": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/limit"
+      },
+      "any": {
+        "$ref": "./api_doc_models.json#/components/schemas/any"
+      },
+      "anyArr": {
+        "$ref": "./api_doc_models.json#/components/schemas/anyArr"
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "x-access-token",
+        "in": "header"
+      }
+    }
+  }
+
+}

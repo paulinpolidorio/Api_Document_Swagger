@@ -1,0 +1,78 @@
+{
+    "components":{
+        "schemas":{
+            "Error": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "number"
+                  },
+                  "error": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "documentation": {
+                    "type": "string"
+                  }
+                }
+              },
+              "any":{
+                "type": "object",
+                "properties": {
+                  "object": {
+                    "type": "string",
+                    "example": "a custom object"
+                  }
+                }
+              },
+              "anyArr":{
+                "type": "array",
+                "properties": {
+                  "object": {
+                    "type": "string",
+                    "example": "a custom object"
+                  }
+                }
+              },
+              "cardId": {
+                "type": "string",
+                "example": "65bbe378891050473a808ce6"
+              },
+              "FileBase64": {
+                "type": "string",
+                "example": "xXzaEQ64XVsdgq..."
+              },
+              "id": {
+                "type": "object",
+                "example": "650076057e35dc5b777678f4"
+              },
+              "UserCreatedResponse": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "Claudio Raimundo Andra Teixeira"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "test@test.com",
+                    "description": "admin@forcetech.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "test123"
+                  },
+                  "id": {
+                    "type": "string",
+                    "example": "650076057e35dc5b777678f4"
+                  }
+                }
+              }
+        }
+    }
+}

@@ -1,0 +1,231 @@
+{
+  "paths": {
+    "users_authenticate": {
+      "post": {
+        "tags": ["Usuário"],
+        "description": "Autentica o usuario na api e gera um JWT token",
+        "summary": "Autentica o usuario na api e gera um JWT token",
+        "operationId": "authenticateUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./models.json#/components/schemas/UserAuth"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "O usuario foi autenticado com sucesso e retornou um JWT token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models.json#/components/schemas/AuthenticatedUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "users": {
+      "post": {
+        "tags": ["Usuário"],
+        "description": "Cria um novo usuário",
+        "summary": "Cria um novo usuário",
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "./models.json#/components/schemas/CreateUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models.json#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "users_me": {
+      "get": {
+        "tags": ["Usuário"],
+        "description": "Obter o perfil do proprietário do token",
+        "summary": "Obter o perfil do proprietário do token",
+        "operationId": "getUserProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./models.json#/components/schemas/UserProfileResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "users_welcome": {
+      "get": {
+        "tags": ["Usuário"],
+        "description": "Obtem o conteúdo pessoal",
+        "summary": "Obtem o conteúdo pessoal",
+        "operationId": "getPersonalContent",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Obtem o conteúdo pessoal",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/any"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

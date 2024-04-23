@@ -1,0 +1,311 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger - Forcetech (API)",
+    "description": "Esta é uma documentação de uso exclusivamente interno para Forcetech API. Voce pode saber mais sobre acessando [Forcetech System](http://forcetech-api.com) ou em [http://forcetech-api.com:443/docs/#SWAGGER](http://forcetech-api.com:443/docs/). Para este exemplo você pode usar uma api key `x-access-token` para testar a autorização de api.",
+    "termsOfService": "http://forcetech-api.com:443/terms/",
+    "contact": {
+      "email": "raul.ribeiro.ibati@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Saiba mais sobre o Forcetech System",
+    "url": "http://forcetech-api.com"
+  },
+  "security": [
+    {
+      "ApiKeyAuth": ["write:cards", "read:cards"]
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3001/",
+      "description": "Local server"
+    },
+    {
+      "url": "http://18.231.92.221:443/",
+      "description": "Test server"
+    },
+    {
+      "url": "http://forcetech-api.com:443/",
+      "description": "Production Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Usuário",
+      "description": "Tudo sobre autenticação de usuários",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-users"
+      }
+    },
+    {
+      "name": "Ficha - Fiança Locatícia",
+      "description": "Tudo sobre a ficha para fiança locaticia",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-aluguel"
+      }
+    },
+    {
+      "name": "Ficha - Proteção imobiliaria",
+      "description": "Tudo sobre a ficha para proteção imobiliaria",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-protecao-imobiliaria"
+      }
+    },
+    {
+      "name": "Relatórios",
+      "description": "Tudo sobre relatorios",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-Relatorios"
+      }
+    },
+    {
+      "name": "Gerenciamento de Parceiros",
+      "description": "Tudo sobre gerenciamento de parceiros",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-parceiros"
+      }
+    },
+    {
+      "name": "Rotas Publicas",
+      "description": "Rotas acessiveis para o publico",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-public"
+      }
+    },
+    {
+      "name": "Diversos",
+      "description": "miscelaneous/actions",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-miscelaneous"
+      }
+    },
+    {
+      "name": "Sockets (desenvolvedor)",
+      "description": "Rotas de socket",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-socket"
+      }
+    },
+    {
+      "name": "Setup do sistema (desenvolvedor)",
+      "description": "Configurações do sistema e banco de dados (exclusivo para desenvolvedor)",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-setup"
+      }
+    }
+  ],
+  "paths": {
+    "/users/authenticate": {
+      "$ref": "./users/users.json#/paths/users_authenticate"
+    },
+    "/users": {
+      "$ref": "./users/users.json#/paths/users"
+    },
+    "/users/me": {
+      "$ref": "./users/users.json#/paths/users_me"
+    },
+    "/users/welcome": {
+      "$ref": "./users/users.json#/paths/users_welcome"
+    },
+
+    "/card-rental-bail": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/card-rental-bail"
+    },
+    "/card-rental-bail/list": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/card-rental-bail_list"
+    },
+    "/card-rental-bail/{cardId}": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/card-rental-bail_{cardId}"
+    },
+    "/card-rental-bail/propose/{cardId}": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/card-rental-bail_propose_{cardId}"
+    },
+    "/card-rental-bail/commission/{cardId}": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/card-rental-bail_commission_{cardId}"
+    },
+    "/document/rental-bail/propose/{cardId}": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/document_rental-bail_propose_{cardId}"
+    },
+    "/document/rental-bail/policy/{cardId}": {
+      "$ref": "./rentalBail/rentalBail.json#/paths/document_rental-bail_policy_{cardId}"
+    },
+
+    "/card-property-protection": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/card-property-protection"
+    },
+    "/card-property-protection/{cardId}": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/card-property-protection_{cardId}"
+    },
+    "/card-property-protection/propose/{cardId}": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/card-property-protection_propose_{cardId}"
+    },
+    "/card-property-protection/list": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/card-property-protection_list"
+    },
+    "/document/property-protection/porto-seguro/propose/{cardId}": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/document_property-protection_porto-seguro_propose_{cardId}"
+    },
+    "/document/property-protection/porto-seguro/policy/{cardId}": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/document_property-protection_porto-seguro_policy_{cardId}"
+    },
+    "/card-property-protection/policy/{cardId}": {
+      "$ref": "./propertyProtection/propertyProtection.json#/paths/card-property-protection_policy_{cardId}"
+    },
+
+    "/reports/property-protection/": {
+      "$ref": "./report/report.json#/paths/reports_property-protection"
+    },
+    "/reports/get-all-policies/": {
+      "$ref": "./report/report.json#/paths/reports_get-all-policies"
+    },
+
+    "/partners/list/": {
+      "$ref": "./partners/partners.json#/paths/partners-list"
+    },
+
+    "/public": {
+      "$ref": "./public/public.json#/paths/public"
+    },
+
+    "/actions/get-card-type/{cardId}": {
+      "$ref": "./actions/actions.json#/actions_get-card-type_{cardId}"
+    },
+    "/actions/search-full/{term}": {
+      "$ref": "./actions/actions.json#/actions_search-full_{term}"
+    },
+
+    "/socket.io": {
+      "$ref": "./socket/socket.json#/socket.io"
+    },
+
+    "/setup/db/all": {
+      "$ref": "./setup/setup.json#/setup_db_all"
+    },
+    "/setup/db/many": {
+      "$ref": "./setup/setup.json#/setup_db_many"
+    },
+    "/setup/rental-bail/{cardId}/propose": {
+      "$ref": "./setup/setup.json#/setup_rental-bail_{cardId}_propose"
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserAuth": {
+        "$ref": "./users/models.json#/components/schemas/UserAuth"
+      },
+      "AuthenticatedUserResponse": {
+        "$ref": "./users/models.json#/components/schemas/AuthenticatedUserResponse"
+      },
+      "CreateUser": {
+        "$ref": "./users/models.json#/components/schemas/CreateUser"
+      },
+      "UserCreatedResponse": {
+        "$ref": "./api_doc_models.json#/components/schemas/UserCreatedResponse"
+      },
+      "UserProfileResponse": {
+        "$ref": "./users/models.json#/components/schemas/UserProfileResponse"
+      },
+
+      "CardRentalBail": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBail"
+      },
+      "CardRentalBailResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailResponse"
+      },
+      "CardRentalBailUpdate": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailUpdate"
+      },
+      "CardRentalBailUpdatedResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailUpdatedResponse"
+      },
+      "CardRentalBailContract": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailContract"
+      },
+      "CardRentalBailContractResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailContractResponse"
+      },
+      "CardRentalBailProposeResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailProposeResponse"
+      },
+      "CardRentalBailList": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailList"
+      },
+      "UpdateCommissionRentalBailProposeRequest": {
+        "$ref": "./rentalBail/models.json#/components/schemas/UpdateCommissionRentalBailProposeRequest"
+      },
+      "UpdateCommissionRentalBailProposeResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/UpdateCommissionRentalBailProposeResponse"
+      },
+      "CardRentalBailCreatedResponse": {
+        "$ref": "./rentalBail/models.json#/components/schemas/CardRentalBailCreatedResponse"
+      },
+
+      "CardPropertyProtection": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtection"
+      },
+      "CardPropertyProtectionCreatedResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionCreatedResponse"
+      },
+      "CardPropertyProtectionResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionResponse"
+      },
+      "CardPropertyProtectionUpdate": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionUpdate"
+      },
+      "CardPropertyProtectionUpdatedResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionUpdatedResponse"
+      },
+      "CardPropertyProtectionContract": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionContract"
+      },
+      "CardPropertyProtectionContractResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionContractResponse"
+      },
+      "CardPropertyProtectionProposeResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionProposeResponse"
+      },
+      "CardPropertyProtectionPolicyDeleteResponse": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionPolicyDeleteResponse"
+      },
+      "CardPropertyProtectionList": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/CardPropertyProtectionList"
+      },
+      
+      "FileBase64": {
+        "$ref": "./api_doc_models.json#/components/schemas/FileBase64"
+      },
+      "Error": {
+        "$ref": "./api_doc_models.json#/components/schemas/Error"
+      },
+      "cardId": {
+        "$ref": "./api_doc_models.json#/components/schemas/cardId"
+      },
+      "page": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/page"
+      },
+      "limit": {
+        "$ref": "./propertyProtection/models.json#/components/schemas/limit"
+      },
+      "any": {
+        "$ref": "./api_doc_models.json#/components/schemas/any"
+      },
+      "anyArr": {
+        "$ref": "./api_doc_models.json#/components/schemas/anyArr"
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "x-access-token",
+        "in": "header"
+      }
+    }
+  }
+}

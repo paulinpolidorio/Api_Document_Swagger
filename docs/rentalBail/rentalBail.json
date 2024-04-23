@@ -1,0 +1,492 @@
+{
+    "paths":{
+        "card-rental-bail": {
+            "post": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Cria uma nova ficha de fiança locatícia e envia para análise",
+              "summary": "Cria uma nova ficha de fiança locaticia e envia para análise",
+              "operationId": "createRentalBail",
+              "parameters": [],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/CardRentalBail"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "201": {
+                  "description": "Ficha foi criada com sucesso",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardRentalBailCreatedResponse"
+                      },
+                      "example": {
+                        "cardId": "65ba641d2797ec6fcfe4d959"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "card-rental-bail_list": {
+            "get": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Obtem a lista de Fiança Locatícia",
+              "summary": "Obtem a lista de Fiança Locatícia",
+              "operationId": "getRentalBailCardList",
+              "responses": {
+                "200": {
+                  "description": "The last 10 cardsIds created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardRentalBailList"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              },
+              "parameters": [
+                {
+                  "name": "page",
+                  "in": "query",
+                  "description": "paginação numero da pagina",
+                  "schema": {
+                    "$ref": "./models.json#/components/schemas/page"
+                  }
+                },
+                {
+                  "name": "limit",
+                  "in": "query",
+                  "description": "paginação limite de itens por pagina",
+                  "schema": {
+                    "$ref": "./models.json#/components/schemas/limit"
+                  }
+                }
+              ]
+            }
+          },
+          "card-rental-bail_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Obter todas as informações sobre a ficha",
+              "summary": "Obter todas as informações sobre a ficha",
+              "operationId": "getCardRentalBail",
+              "responses": {
+                "200": {
+                  "description": "Dados atuais da ficha",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardRentalBailResponse"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "put": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Atualizar Informações da ficha",
+              "summary": "Atualizar Informações da ficha",
+              "operationId": "updateCardRentalBail",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/CardRentalBailUpdate"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Dados da ficha atualizados com sucesso",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardRentalBailUpdatedResponse"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "post": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Contrata um seguro",
+              "summary": "Contrata um seguro",
+              "operationId": "acceptCardRentalBailPropose",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/CardRentalBailContract"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Seguro escolhido contratado",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardRentalBailContractResponse"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "card-rental-bail_propose_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Obtem as informações e status das propostas",
+              "summary": "Obtem as informações e status das propostas",
+              "operationId": "getRentalBailPropose",
+              "responses": {
+                "200": {
+                  "description": "Propostas das seguradoras para ficha",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardRentalBailProposeResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "card-rental-bail_commission_{cardId}": {
+            "put": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Atualiza os valores das propostas com base na comissão",
+              "summary": "Atualiza os valores das propostas com base na comissão",
+              "operationId": "updateRentalBailCommission",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/UpdateCommissionRentalBailProposeRequest"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Confirmação de alteração da comissão",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/UpdateCommissionRentalBailProposeResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "document_rental-bail_propose_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+              "summary": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+              "operationId": "getRentalBailProposeDocument",
+              "responses": {
+                "200": {
+                  "description": "Documento pronto",
+                  "content": {
+                    "application/pdf": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/FileBase64"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "document_rental-bail_policy_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Fiança Locatícia"],
+              "description": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+              "summary": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+              "operationId": "getRentalBailPolicyDocument",
+              "parameters": [
+                {
+                  "name": "cardId",
+                  "in": "query",
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                  },
+                  "required": true
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "The document is ready",
+                  "content": {
+                    "application/pdf": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/FileBase64"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "style": "simple"
+              }
+            ]
+          },
+           "CardRentalBailCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "example": "65bbe378891050473a808ce6"
+          }
+        }
+      }
+    }
+}

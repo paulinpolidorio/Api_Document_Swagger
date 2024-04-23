@@ -1,0 +1,76 @@
+{
+    "paths":{
+        "reports_property-protection": {
+            "get": {
+              "tags": ["Relatórios"],
+              "description": "Obter relatorio de proteção imobiliaria",
+              "summary": "Obter relatorio de proteção imobiliaria",
+              "operationId": "getPropertyProtectionReport",
+              "parameters": [],
+              "responses": {
+                "200": {
+                  "description": "The last 10 cardsIds created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/any"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "reports_get-all-policies": {
+            "get": {
+              "tags": ["Relatórios"],
+              "description": "Obter relatorio apolices de proteção imobiliaria",
+              "summary": "Obter relatorio apolices de proteção imobiliaria",
+              "operationId": "getPropertyProtectionPolicyList",
+              "parameters": [],
+              "responses": {
+                "200": {
+                  "description": "The last 10 cardsIds created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/anyArr"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+    }
+}

@@ -1,0 +1,111 @@
+{
+    "actions_get-card-type_{cardId}": {
+        "get": {
+          "tags": ["Diversos"],
+          "description": "Obter o status do cartão",
+          "summary": "Obter o status do cartão",
+          "operationId": "getCardStatus",
+          "responses": {
+            "200": {
+              "description": "The user has been created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "./models.json#/components/schemas/UserCreatedResponse"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid parameters",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/Error"
+                  },
+                  "example": {
+                    "message": "Invalid parameters",
+                    "code": "400",
+                    "error": "Bad Request"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/Error"
+                  },
+                  "example": {
+                    "message": "Conflict",
+                    "code": "409",
+                    "error": "Conflict"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "cardId",
+            "in": "path",
+            "description": "identificação da ficha",
+            "required": true,
+            "schema": {
+              "$ref": "../api_doc_models.json#/components/schemas/cardId"
+            },
+            "style": "simple"
+          }
+        ]
+      },
+      "actions_search-full_{term}": {
+        "get": {
+          "tags": ["Diversos"],
+          "description": "Obter a lista de cartões por pesquisa",
+          "summary": "Obter a lista de cartões por pesquisa",
+          "operationId": "search",
+          "responses": {
+            "200": {
+              "description": "The user has been created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/any"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Invalid parameters",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/Error"
+                  },
+                  "example": {
+                    "message": "Card not found!",
+                    "code": "401",
+                    "error": "Bad Request"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "term",
+            "in": "path",
+            "description": "termo de busca",
+            "required": true,
+            "schema": {
+              "$ref": "../api_doc_models.json#/components/schemas/cardId"
+            },
+            "style": "simple"
+          }
+        ]
+      }
+}

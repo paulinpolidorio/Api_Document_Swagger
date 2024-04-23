@@ -1,0 +1,76 @@
+{
+    "socket.io": {
+        "get": {
+          "tags": ["Sockets (desenvolvedor)"],
+          "description": "Obter o status do cartão",
+          "summary": "Obter o status do cartão",
+          "operationId": "getCardStatusa",
+          "parameters": [
+            {
+              "name": "EIO",
+              "in": "query",
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/any"
+              },
+              "required": true
+            },
+            {
+              "name": "transport",
+              "in": "query",
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/any"
+              }
+            },
+            {
+              "name": "t",
+              "in": "query",
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/any"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "The user has been created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/any"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid parameters",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/Error"
+                  },
+                  "example": {
+                    "message": "Invalid parameters",
+                    "code": "400",
+                    "error": "Bad Request"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Conflict",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../api_doc_models.json#/components/schemas/Error"
+                  },
+                  "example": {
+                    "message": "Conflict",
+                    "code": "409",
+                    "error": "Conflict"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+}

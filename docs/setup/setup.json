@@ -1,0 +1,122 @@
+{
+  "setup_db_all": {
+    "delete": {
+      "deprecated": true,
+      "tags": ["Setup do sistema (desenvolvedor)"],
+      "description": "Drop Data Base",
+      "summary": "Drop Data Base",
+      "operationId": "dropDataBasec",
+      "parameters": [],
+      "responses": {
+        "200": {
+          "description": "The user has been created",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/UserCreatedResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "setup_db_many": {
+    "delete": {
+      "deprecated": true,
+      "tags": ["Setup do sistema (desenvolvedor)"],
+      "description": "Drop Data Base",
+      "summary": "Drop Data Base",
+      "operationId": "dropDataBase",
+      "parameters": [],
+      "responses": {
+        "200": {
+          "description": "The user has been created",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/UserCreatedResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "setup_rental-bail_{cardId}_propose": {
+    "put": {
+      "deprecated": true,
+      "tags": ["Setup do sistema (desenvolvedor)"],
+      "description": "Update Card",
+      "summary": "Update Card",
+      "operationId": "setManualPropose",
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "query",
+          "schema": {
+            "$ref": "../api_doc_models.json#/components/schemas/cardId"
+          },
+          "required": true
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "The user has been updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/any"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/Error"
+              },
+              "example": {
+                "message": "Invalid parameters",
+                "code": "400",
+                "error": "Bad Request"
+              }
+            }
+          }
+        },
+        "409": {
+          "description": "Conflict",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../api_doc_models.json#/components/schemas/Error"
+              },
+              "example": {
+                "message": "Conflict",
+                "code": "409",
+                "error": "Conflict"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": [
+      {
+        "name": "cardId",
+        "in": "path",
+        "description": "identificação da ficha",
+        "required": true,
+        "schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "style": "simple"
+      }
+    ]
+  }
+}

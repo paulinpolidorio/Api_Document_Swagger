@@ -1,0 +1,29 @@
+{
+  "components": {
+    "schemas": {
+      "UserCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          }
+        }
+      }
+    }
+    
+  }
+}

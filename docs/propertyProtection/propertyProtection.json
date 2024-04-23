@@ -1,0 +1,547 @@
+{
+    "paths":{
+        "card-property-protection": {
+            "post": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Cria uma nova ficha de proteção imobiliaria e envia para análise",
+              "summary": "Cria uma nova ficha de proteção imobiliaria e envia para análise",
+              "operationId": "createPropertyProtection",
+              "parameters": [],
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/CardPropertyProtection"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "201": {
+                  "description": "Ficha foi criada com sucesso",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionCreatedResponse"
+                      },
+                      "example": {
+                        "cardId": "65ba641d2797ec6fcfe4d959"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Unauthorized",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "User unauthorized",
+                        "code": "401",
+                        "error": "Unauthorized"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "card-property-protection_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Obter todas as informações sobre a ficha",
+              "summary": "Obter todas as informações sobre a ficha",
+              "operationId": "getCardPropertyProtection",
+              "responses": {
+                "200": {
+                  "description": "Dados atuais da ficha",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionResponse"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Unauthorized",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "User unauthorized",
+                        "code": "401",
+                        "error": "Unauthorized"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "put": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Atualizar uma ficha de proteção imobiliaria",
+              "summary": "Atualizar uma ficha de proteção imobiliaria",
+              "operationId": "updateCardPropertyProtection",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/CardPropertyProtectionUpdate"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Dados da ficha atualizados com sucesso",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionUpdatedResponse"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Unauthorized",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "User unauthorized",
+                        "code": "401",
+                        "error": "Unauthorized"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "post": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Contrata um seguro",
+              "summary": "Contrata um seguro",
+              "operationId": "acceptCardPropertyProtectionPropose",
+              "requestBody": {
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "./models.json#/components/schemas/CardPropertyProtectionContract"
+                    }
+                  }
+                },
+                "required": true
+              },
+              "responses": {
+                "200": {
+                  "description": "Seguro escolhido contratado",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionContractResponse"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "card-property-protection_propose_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Obtem as informações e status das propostas",
+              "summary": "Obtem as informações e status das propostas",
+              "operationId": "getPropertyProtectionPropose",
+              "responses": {
+                "200": {
+                  "description": "Propostas das seguradoras para ficha",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionProposeResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "card-property-protection_list": {
+            "get": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Obtem as informações da lista ",
+              "summary": "Obtem as informações da lista ",
+              "operationId": "getPropertyProtectionCardList",
+              "responses": {
+                "200": {
+                  "description": "The last 10 cardsIds created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionList"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              },
+              "parameters": [
+                {
+                  "name": "page",
+                  "in": "query",
+                  "description": "paginação numero da pagina",
+                  "schema": {
+                    "$ref": "./models.json#/components/schemas/page"
+                  }
+                },
+                {
+                  "name": "limit",
+                  "in": "query",
+                  "description": "paginação limite de itens por pagina",
+                  "schema": {
+                    "$ref": "./models.json#/components/schemas/limit"
+                  }
+                }
+              ]
+            }
+          },
+          "document_property-protection_porto-seguro_propose_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+              "summary": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+              "operationId": "getPortoPropertyProtectionProposeDocument",
+              "responses": {
+                "200": {
+                  "description": "Documento pronto",
+                  "content": {
+                    "application/pdf": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/FileBase64"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "document_property-protection_porto-seguro_policy_{cardId}": {
+            "get": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+              "summary": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+              "operationId": "getPortoPropertyProtectionPolicyDocument",
+              "responses": {
+                "200": {
+                  "description": "The document is ready",
+                  "content": {
+                    "application/pdf": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/FileBase64"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          },
+          "card-property-protection_policy_{cardId}": {
+            "delete": {
+              "tags": ["Ficha - Proteção imobiliaria"],
+              "description": "Exclui uma apolice gerada",
+              "summary": "Exclui uma apolice gerada",
+              "operationId": "cancelPolicy",
+              "responses": {
+                "200": {
+                  "description": "Apolice esta sendo excluida",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "./models.json#/components/schemas/CardPropertyProtectionPolicyDeleteResponse"
+                      }
+                    }
+                  }
+                },
+                "400": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Unauthorized",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "User unauthorized",
+                        "code": "401",
+                        "error": "Unauthorized"
+                      }
+                    }
+                  }
+                },
+                "409": {
+                  "description": "Conflict",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Conflict",
+                        "code": "409",
+                        "error": "Conflict"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "parameters": [
+              {
+                "name": "cardId",
+                "in": "path",
+                "description": "identificação da ficha",
+                "required": true,
+                "schema": {
+                  "$ref": "../api_doc_models.json#/components/schemas/cardId"
+                },
+                "style": "simple"
+              }
+            ]
+          }
+    }
+}

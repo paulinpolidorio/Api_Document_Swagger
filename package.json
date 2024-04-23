@@ -1,0 +1,20 @@
+{
+  "name": "swagger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-docs": "swagger-cli bundle ./docs/basic-doc.json --outfile ./docs/api_basic_doc_build.json --debug"
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "swagger-cli": "^4.0.4",
+    "swagger-ui": "^5.13.0",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

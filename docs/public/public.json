@@ -1,0 +1,26 @@
+{
+    "paths":{
+        "public": {
+            "get": {
+              "tags": ["Rotas Publicas"],
+              "description": "Obter o conteúdo público",
+              "summary": "Obter o conteúdo público",
+              "operationId": "getPublicContent",
+              "parameters": [],
+              "responses": {
+                "200": {
+                  "description": "Obter o conteúdo público",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/any"
+                      }
+                    }
+                  }
+                }
+              },
+              "security": []
+            }
+          }
+    }
+}

@@ -1,0 +1,528 @@
+{
+  "components": {
+    "schemas": {
+      "CardPropertyProtection": {
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "cnpj": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "tipoPessoa": {
+            "type": "string",
+            "example": "1"
+          },
+          "cepLocalRisco": {
+            "type": "string",
+            "example": "88509016"
+          },
+          "tipoLogradouro": {
+            "type": "string",
+            "example": "R"
+          },
+          "logradouro": {
+            "type": "string",
+            "example": "AVENIDA MARECHAL CASTELO BRANCO"
+          },
+          "numero": {
+            "type": "string",
+            "example": "616"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Universitario"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "LAGES"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SC"
+          },
+          "codigoTipoImovel": {
+            "type": "string",
+            "example": "6"
+          },
+          "valorAluguel": {
+            "type": "number",
+            "example": "3000"
+          },
+          "flagResidencial": {
+            "type": "string",
+            "example": "S"
+          },
+          "nomeProponente": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "complemento": {
+            "type": "string",
+            "example": "teste"
+          }
+        }
+      },
+      "CardPropertyProtectionCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "example": "65bbe378891050473a808ce6"
+          }
+        }
+      },
+      "CardPropertyProtectionResponse": {
+        "type": "object",
+        "properties": {
+          "susepOrcamento": {
+            "type": "string",
+            "example": "26L93J"
+          },
+          "flagImprimirOperacaoOrcamento": {
+            "type": "number",
+            "example": "1"
+          },
+          "codigoOperacao": {
+            "type": "number",
+            "example": "68"
+          },
+          "codigoParceiroNegocio": {
+            "type": "number",
+            "example": "61729"
+          },
+          "dataVigenciaInicial": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "dataVigenciaFinal": {
+            "type": "string",
+            "example": "29/01/2025"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "10920107850"
+          },
+          "nomeProponente": {
+            "type": "string",
+            "example": "Joao"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "example": "25/03/1986"
+          },
+          "tipoTelefone": {
+            "type": "number",
+            "example": "3"
+          },
+          "telefoneCompleto": {
+            "type": "string",
+            "example": "21982444801"
+          },
+          "tipoPessoa": {
+            "type": "number",
+            "example": "1"
+          },
+          "flagProponenteProprietario": {
+            "type": "string",
+            "example": "N"
+          },
+          "cepLocalRisco": {
+            "type": "string",
+            "example": "88509016"
+          },
+          "tipoLogradouro": {
+            "type": "string",
+            "example": "R"
+          },
+          "logradouro": {
+            "type": "string",
+            "example": "AVENIDA MARECHAL CASTELO BRANCO"
+          },
+          "numero": {
+            "type": "number",
+            "example": "616"
+          },
+          "complemento": {
+            "type": "string",
+            "example": "teste"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Universitario"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "LAGES"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SC"
+          },
+          "codigoTipoImovel": {
+            "type": "number",
+            "example": "6"
+          },
+          "cepEnderecoSegurado": {
+            "type": "string",
+            "example": "S"
+          },
+          "flagResidencial": {
+            "type": "string",
+            "example": "S"
+          },
+          "codigoClausulaServico": {
+            "type": "number",
+            "example": "479"
+          },
+          "valorCoberturaIncendio": {
+            "type": "number",
+            "example": "300000"
+          },
+          "valorCoberturaPerdaAluguel": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaVendaval": {
+            "type": "number",
+            "example": "6500"
+          },
+          "valorCoberturaResponsabilidadeCivil": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaConteudo": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaDanosEletricos": {
+            "type": "number",
+            "example": "10000"
+          }
+        }
+      },
+      "CardPropertyProtectionUpdate": {
+        "type": "object",
+        "properties": {
+          "susepOrcamento": {
+            "type": "string",
+            "example": "TST01J"
+          },
+          "flagImprimirOperacaoOrcamento": {
+            "type": "number",
+            "example": "1"
+          },
+          "codigoOperacao": {
+            "type": "number",
+            "example": "68"
+          },
+          "codigoParceiroNegocio": {
+            "type": "string",
+            "example": "23939"
+          },
+          "dataVigenciaInicial": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "dataVigenciaFinal": {
+            "type": "string",
+            "example": "29/01/2025"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "nomeProponente": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "example": "25/03/1986"
+          },
+          "tipoTelefone": {
+            "type": "number",
+            "example": "3"
+          },
+          "telefoneCompleto": {
+            "type": "string",
+            "example": "21982444801"
+          },
+          "tipoPessoa": {
+            "type": "number",
+            "example": "1"
+          },
+          "flagProponenteProprietario": {
+            "type": "string",
+            "example": "N"
+          },
+          "cepLocalRisco": {
+            "type": "string",
+            "example": "88509016"
+          },
+          "tipoLogradouro": {
+            "type": "string",
+            "example": "R"
+          },
+          "logradouro": {
+            "type": "string",
+            "example": "AVENIDA MARECHAL CASTELO BRANCO"
+          },
+          "numero": {
+            "type": "number",
+            "example": "616"
+          },
+          "complemento": {
+            "type": "string",
+            "example": "teste"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Universitario"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "LAGES"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SC"
+          },
+          "codigoTipoImovel": {
+            "type": "number",
+            "example": "6"
+          },
+          "cepEnderecoSegurado": {
+            "type": "string",
+            "example": "S"
+          },
+          "flagResidencial": {
+            "type": "string",
+            "example": "S"
+          },
+          "codigoClausulaServico": {
+            "type": "number",
+            "example": "479"
+          },
+          "valorCoberturaIncendio": {
+            "type": "number",
+            "example": "300000"
+          },
+          "valorCoberturaPerdaAluguel": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaVendaval": {
+            "type": "number",
+            "example": "6500"
+          },
+          "valorCoberturaResponsabilidadeCivil": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaConteudo": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaDanosEletricos": {
+            "type": "number",
+            "example": "10000"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@teste.com"
+          },
+          "celular": {
+            "type": "string",
+            "example": "21982444801"
+          },
+          "sexo": {
+            "type": "string",
+            "example": "M"
+          },
+          "codigoFormaPagamento": {
+            "type": "number",
+            "example": "62"
+          },
+          "cpfBeneficiario": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "nomeBeneficiario": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          }
+        }
+      },
+      "CardPropertyProtectionUpdatedResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "Dados atualizados com sucesso!"
+          }
+        }
+      },
+      "CardPropertyProtectionContract": {
+        "type": "object",
+        "properties": {
+          "insurance": {
+            "type": "string",
+            "example": "porto"
+          }
+        }
+      },
+      "CardPropertyProtectionContractResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "O seguro {nome do seguro} esta sendo contratado!"
+          }
+        }
+      },
+      "CardPropertyProtectionProposeResponse": {
+        "type": "object",
+        "properties": {
+          "valorPremioTotalAVista": {
+            "type": "object",
+            "properties": {
+              "tipo": {
+                "type": "string",
+                "example": "Decimal"
+              },
+              "content": {
+                "type": "number",
+                "example": "220.28"
+              }
+            }
+          },
+          "valorPremioLiquido": {
+            "type": "object",
+            "properties": {
+              "tipo": {
+                "type": "string",
+                "example": "Decimal"
+              },
+              "content": {
+                "type": "number",
+                "example": "205.1389"
+              }
+            }
+          },
+          "valorPremioLiquidoTotal": {
+            "type": "object",
+            "properties": {
+              "tipo": {
+                "type": "string",
+                "example": "Decimal"
+              },
+              "content": {
+                "type": "number",
+                "example": "205.1389"
+              }
+            }
+          },
+          "percentualComissao": {
+            "type": "number",
+            "example": "65"
+          },
+          "parcelamento": {
+            "type": "object",
+            "properties": {
+              "encargos": {
+                "type": "number",
+                "example": "0"
+              },
+              "iof": {
+                "type": "number",
+                "example": "15.14"
+              },
+              "codigo": {
+                "type": "number",
+                "example": "41"
+              },
+              "custoapolice": {
+                "type": "object",
+                "properties": {
+                  "tipo": {
+                    "type": "string",
+                    "example": "Decimal"
+                  },
+                  "content": {
+                    "type": "number",
+                    "example": "0"
+                  }
+                }
+              },
+              "qtdParcelas": {
+                "type": "number",
+                "example": "4"
+              },
+              "juros": {
+                "type": "number",
+                "example": "0"
+              },
+              "valorDemaisParcelas": {
+                "type": "number",
+                "example": "55.07"
+              },
+              "valor1aParcela": {
+                "type": "number",
+                "example": "55.07"
+              },
+              "descricao": {
+                "type": "string",
+                "example": "4 x FATURA MENSAL - SEM ENTRADA"
+              }
+            }
+          },
+          "comissaoTotal": {
+            "type": "number",
+            "example": "133.340285"
+          },
+          "comissaoParceiro": {
+            "type": "string",
+            "example": "40.00"
+          }
+        }
+      },
+      "CardPropertyProtectionPolicyDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "A apolice esta sendo excluida!"
+          }
+        }
+      },
+      "CardPropertyProtectionList": {
+        "type": "object"
+      },
+      "page": {
+        "type": "string",
+        "example": "1"
+      },
+      "limit": {
+        "type": "string",
+        "example": "10"
+      }
+    }
+  
+  }
+}

@@ -1,0 +1,3277 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger - Forcetech (API)",
+    "description": "Esta é uma documentação de uso exclusivamente interno para Forcetech API. Voce pode saber mais sobre acessando [Forcetech System](http://forcetech-api.com) ou em [http://forcetech-api.com:443/docs/#SWAGGER](http://forcetech-api.com:443/docs/). Para este exemplo você pode usar uma api key `x-access-token` para testar a autorização de api.",
+    "termsOfService": "http://forcetech-api.com:443/terms/",
+    "contact": {
+      "email": "raul.ribeiro.ibati@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Saiba mais sobre o Forcetech System",
+    "url": "http://forcetech-api.com"
+  },
+  "security": [
+    {
+      "ApiKeyAuth": [
+        "write:cards",
+        "read:cards"
+      ]
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3001/",
+      "description": "Local server"
+    },
+    {
+      "url": "http://18.231.92.221:443/",
+      "description": "Test server"
+    },
+    {
+      "url": "http://forcetech-api.com:443/",
+      "description": "Production Server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Usuário",
+      "description": "Tudo sobre autenticação de usuários",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-users"
+      }
+    },
+    {
+      "name": "Ficha - Fiança Locatícia",
+      "description": "Tudo sobre a ficha para fiança locaticia",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-aluguel"
+      }
+    },
+    {
+      "name": "Ficha - Proteção imobiliaria",
+      "description": "Tudo sobre a ficha para proteção imobiliaria",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-protecao-imobiliaria"
+      }
+    },
+    {
+      "name": "Relatórios",
+      "description": "Tudo sobre relatorios",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-Relatorios"
+      }
+    },
+    {
+      "name": "Gerenciamento de Parceiros",
+      "description": "Tudo sobre gerenciamento de parceiros",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-parceiros"
+      }
+    },
+    {
+      "name": "Rotas Publicas",
+      "description": "Rotas acessiveis para o publico",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-public"
+      }
+    },
+    {
+      "name": "Diversos",
+      "description": "miscelaneous/actions",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-miscelaneous"
+      }
+    },
+    {
+      "name": "Sockets (desenvolvedor)",
+      "description": "Rotas de socket",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-socket"
+      }
+    },
+    {
+      "name": "Setup do sistema (desenvolvedor)",
+      "description": "Configurações do sistema e banco de dados (exclusivo para desenvolvedor)",
+      "externalDocs": {
+        "url": "http://forcetech-api.com:443/docs-setup"
+      }
+    }
+  ],
+  "paths": {
+    "/users/authenticate": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Autentica o usuario na api e gera um JWT token",
+        "summary": "Autentica o usuario na api e gera um JWT token",
+        "operationId": "authenticateUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAuth"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "O usuario foi autenticado com sucesso e retornou um JWT token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticatedUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/users": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Cria um novo usuário",
+        "summary": "Cria um novo usuário",
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "Claudio Raimundo Andra Teixeira"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "test@test.com",
+                      "description": "admin@forcetech.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "test123"
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "650076057e35dc5b777678f4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Obter o perfil do proprietário do token",
+        "summary": "Obter o perfil do proprietário do token",
+        "operationId": "getUserProfile",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/welcome": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "Obtem o conteúdo pessoal",
+        "summary": "Obtem o conteúdo pessoal",
+        "operationId": "getPersonalContent",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Obtem o conteúdo pessoal",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/any"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Não autorizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User not found",
+                  "code": "404",
+                  "error": "Not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/card-rental-bail": {
+      "post": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Cria uma nova ficha de fiança locatícia e envia para análise",
+        "summary": "Cria uma nova ficha de fiança locaticia e envia para análise",
+        "operationId": "createRentalBail",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardRentalBail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Ficha foi criada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardRentalBailCreatedResponse"
+                },
+                "example": {
+                  "cardId": "65ba641d2797ec6fcfe4d959"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/card-rental-bail/list": {
+      "get": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Obtem a lista de Fiança Locatícia",
+        "summary": "Obtem a lista de Fiança Locatícia",
+        "operationId": "getRentalBailCardList",
+        "responses": {
+          "200": {
+            "description": "The last 10 cardsIds created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardRentalBailList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "paginação numero da pagina",
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "paginação limite de itens por pagina",
+            "schema": {
+              "type": "string",
+              "example": "10"
+            }
+          }
+        ]
+      }
+    },
+    "/card-rental-bail/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Obter todas as informações sobre a ficha",
+        "summary": "Obter todas as informações sobre a ficha",
+        "operationId": "getCardRentalBail",
+        "responses": {
+          "200": {
+            "description": "Dados atuais da ficha",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardRentalBailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Atualizar Informações da ficha",
+        "summary": "Atualizar Informações da ficha",
+        "operationId": "updateCardRentalBail",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardRentalBailUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dados da ficha atualizados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardRentalBailUpdatedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Contrata um seguro",
+        "summary": "Contrata um seguro",
+        "operationId": "acceptCardRentalBailPropose",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardRentalBailContract"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Seguro escolhido contratado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardRentalBailContractResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/card-rental-bail/propose/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Obtem as informações e status das propostas",
+        "summary": "Obtem as informações e status das propostas",
+        "operationId": "getRentalBailPropose",
+        "responses": {
+          "200": {
+            "description": "Propostas das seguradoras para ficha",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardRentalBailProposeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/card-rental-bail/commission/{cardId}": {
+      "put": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Atualiza os valores das propostas com base na comissão",
+        "summary": "Atualiza os valores das propostas com base na comissão",
+        "operationId": "updateRentalBailCommission",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommissionRentalBailProposeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Confirmação de alteração da comissão",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateCommissionRentalBailProposeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/document/rental-bail/propose/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+        "summary": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+        "operationId": "getRentalBailProposeDocument",
+        "responses": {
+          "200": {
+            "description": "Documento pronto",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileBase64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/document/rental-bail/policy/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Fiança Locatícia"
+        ],
+        "description": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+        "summary": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+        "operationId": "getRentalBailPolicyDocument",
+        "parameters": [
+          {
+            "name": "cardId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/cardId"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The document is ready",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileBase64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/card-property-protection": {
+      "post": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Cria uma nova ficha de proteção imobiliaria e envia para análise",
+        "summary": "Cria uma nova ficha de proteção imobiliaria e envia para análise",
+        "operationId": "createPropertyProtection",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardPropertyProtection"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Ficha foi criada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionCreatedResponse"
+                },
+                "example": {
+                  "cardId": "65ba641d2797ec6fcfe4d959"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/card-property-protection/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Obter todas as informações sobre a ficha",
+        "summary": "Obter todas as informações sobre a ficha",
+        "operationId": "getCardPropertyProtection",
+        "responses": {
+          "200": {
+            "description": "Dados atuais da ficha",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Atualizar uma ficha de proteção imobiliaria",
+        "summary": "Atualizar uma ficha de proteção imobiliaria",
+        "operationId": "updateCardPropertyProtection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardPropertyProtectionUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Dados da ficha atualizados com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionUpdatedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Contrata um seguro",
+        "summary": "Contrata um seguro",
+        "operationId": "acceptCardPropertyProtectionPropose",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CardPropertyProtectionContract"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Seguro escolhido contratado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionContractResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/card-property-protection/propose/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Obtem as informações e status das propostas",
+        "summary": "Obtem as informações e status das propostas",
+        "operationId": "getPropertyProtectionPropose",
+        "responses": {
+          "200": {
+            "description": "Propostas das seguradoras para ficha",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionProposeResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/card-property-protection/list": {
+      "get": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Obtem as informações da lista ",
+        "summary": "Obtem as informações da lista ",
+        "operationId": "getPropertyProtectionCardList",
+        "responses": {
+          "200": {
+            "description": "The last 10 cardsIds created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionList"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "paginação numero da pagina",
+            "schema": {
+              "$ref": "#/components/schemas/page"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "paginação limite de itens por pagina",
+            "schema": {
+              "$ref": "#/components/schemas/limit"
+            }
+          }
+        ]
+      }
+    },
+    "/document/property-protection/porto-seguro/propose/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+        "summary": "Baixar o documento pdf de uma proposta (realizar conversão BASE64)",
+        "operationId": "getPortoPropertyProtectionProposeDocument",
+        "responses": {
+          "200": {
+            "description": "Documento pronto",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileBase64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/document/property-protection/porto-seguro/policy/{cardId}": {
+      "get": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+        "summary": "Baixar o documento pdf de uma apólice (realizar conversão BASE64)",
+        "operationId": "getPortoPropertyProtectionPolicyDocument",
+        "responses": {
+          "200": {
+            "description": "The document is ready",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileBase64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/card-property-protection/policy/{cardId}": {
+      "delete": {
+        "tags": [
+          "Ficha - Proteção imobiliaria"
+        ],
+        "description": "Exclui uma apolice gerada",
+        "summary": "Exclui uma apolice gerada",
+        "operationId": "cancelPolicy",
+        "responses": {
+          "200": {
+            "description": "Apolice esta sendo excluida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CardPropertyProtectionPolicyDeleteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "User unauthorized",
+                  "code": "401",
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/reports/property-protection/": {
+      "get": {
+        "tags": [
+          "Relatórios"
+        ],
+        "description": "Obter relatorio de proteção imobiliaria",
+        "summary": "Obter relatorio de proteção imobiliaria",
+        "operationId": "getPropertyProtectionReport",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The last 10 cardsIds created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/any"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/get-all-policies/": {
+      "get": {
+        "tags": [
+          "Relatórios"
+        ],
+        "description": "Obter relatorio apolices de proteção imobiliaria",
+        "summary": "Obter relatorio apolices de proteção imobiliaria",
+        "operationId": "getPropertyProtectionPolicyList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The last 10 cardsIds created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/anyArr"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/partners/list/": {
+      "get": {
+        "tags": [
+          "Gerenciamento de Parceiros"
+        ],
+        "description": "Obter a Lista de Parceiros",
+        "summary": "Obter a Lista de Parceiros",
+        "operationId": "getPartnersList",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The last 10 cardsIds created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/anyArr"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public": {
+      "get": {
+        "tags": [
+          "Rotas Publicas"
+        ],
+        "description": "Obter o conteúdo público",
+        "summary": "Obter o conteúdo público",
+        "operationId": "getPublicContent",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Obter o conteúdo público",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/any"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/actions/get-card-type/{cardId}": {
+      "get": {
+        "tags": [
+          "Diversos"
+        ],
+        "description": "Obter o status do cartão",
+        "summary": "Obter o status do cartão",
+        "operationId": "getCardStatus",
+        "responses": {
+          "200": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {
+                      "type": "string",
+                      "example": "Claudio Raimundo Andra Teixeira"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "test@test.com",
+                      "description": "admin@forcetech.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "test123"
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "650076057e35dc5b777678f4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/actions/search-full/{term}": {
+      "get": {
+        "tags": [
+          "Diversos"
+        ],
+        "description": "Obter a lista de cartões por pesquisa",
+        "summary": "Obter a lista de cartões por pesquisa",
+        "operationId": "search",
+        "responses": {
+          "200": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/any"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Card not found!",
+                  "code": "401",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "term",
+          "in": "path",
+          "description": "termo de busca",
+          "required": true,
+          "schema": {
+            "$ref": "#/components/schemas/cardId"
+          },
+          "style": "simple"
+        }
+      ]
+    },
+    "/socket.io": {
+      "get": {
+        "tags": [
+          "Sockets (desenvolvedor)"
+        ],
+        "description": "Obter o status do cartão",
+        "summary": "Obter o status do cartão",
+        "operationId": "getCardStatusa",
+        "parameters": [
+          {
+            "name": "EIO",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/any"
+            },
+            "required": true
+          },
+          {
+            "name": "transport",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/any"
+            }
+          },
+          {
+            "name": "t",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/any"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/any"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setup/db/all": {
+      "delete": {
+        "deprecated": true,
+        "tags": [
+          "Setup do sistema (desenvolvedor)"
+        ],
+        "description": "Drop Data Base",
+        "summary": "Drop Data Base",
+        "operationId": "dropDataBasec",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setup/db/many": {
+      "delete": {
+        "deprecated": true,
+        "tags": [
+          "Setup do sistema (desenvolvedor)"
+        ],
+        "description": "Drop Data Base",
+        "summary": "Drop Data Base",
+        "operationId": "dropDataBase",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "The user has been created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserCreatedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/setup/rental-bail/{cardId}/propose": {
+      "put": {
+        "deprecated": true,
+        "tags": [
+          "Setup do sistema (desenvolvedor)"
+        ],
+        "description": "Update Card",
+        "summary": "Update Card",
+        "operationId": "setManualPropose",
+        "parameters": [
+          {
+            "name": "cardId",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/cardId"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The user has been updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/any"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Invalid parameters",
+                  "code": "400",
+                  "error": "Bad Request"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "message": "Conflict",
+                  "code": "409",
+                  "error": "Conflict"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "cardId",
+          "in": "path",
+          "description": "identificação da ficha",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "style": "simple"
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserAuth": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "AuthenticatedUserResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          },
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTW9sZHN5c3RlbSIsImVtYWlsIjoibW9sZHN5c3RlbUBtb2xkc3lzdGVtLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHNxaHFaV2NvQThhL1RVeWttSmhyUGV0aklTYmJQdmZ3MVJaYjhEZWVTYnlUcEVwZGRSU2hXIiwiaWQiOiI2NTAwNzYwNTdlMzVkYzViNzc3Njc4ZjQiLCJpYXQiOjE3MDI2MDc1NjgsImV4cCI6MTcwMjYyNzU2OH0.6cFeKDQRjC23t-GXq7FSF6GV37dsYy74AEV4SVd4rJI"
+          },
+          "roles": {
+            "type": "array",
+            "example": "['admin']"
+          }
+        }
+      },
+      "CreateUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string"
+          },
+          "razaoSocial": {
+            "type": "string"
+          },
+          "susepPort": {
+            "type": "string"
+          },
+          "orcamentoExterno": {
+            "type": "string"
+          },
+          "codigoPorto": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "email",
+          "password"
+        ]
+      },
+      "UserCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          }
+        }
+      },
+      "UserProfileResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          }
+        }
+      },
+      "CardRentalBail": {
+        "type": "object",
+        "properties": {
+          "codImobiliaria": {
+            "type": "number",
+            "example": 668246
+          },
+          "cpf": {
+            "type": "string",
+            "example": "535.035.117-68"
+          },
+          "nome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "profissao": {
+            "type": "string",
+            "example": "Empresario"
+          },
+          "vinculoEmpregaticio": {
+            "type": "string",
+            "example": "Empresario"
+          },
+          "renda": {
+            "type": "number",
+            "example": 10000
+          },
+          "email": {
+            "type": "string",
+            "example": "jose.antonio-01@gmail.com"
+          },
+          "celular": {
+            "type": "string",
+            "example": "(21) 97259-7078"
+          },
+          "conjugueCpf": {
+            "type": "string",
+            "example": "111.111.111-11"
+          },
+          "conjugueNome": {
+            "type": "string",
+            "example": "Maria da Silva"
+          },
+          "conjugueProfissao": {
+            "type": "string",
+            "example": "Empresario"
+          },
+          "conjugueRenda": {
+            "type": "number",
+            "example": "123213"
+          },
+          "conjugueEmail": {
+            "type": "string",
+            "example": "maria@email.com"
+          },
+          "conjugueCelular": {
+            "type": "string",
+            "example": "(99) 99999-9999"
+          },
+          "solidarioCpf": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioNome": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioProfissao": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioRenda": {
+            "type": "number",
+            "example": ""
+          },
+          "solidarioEmail": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioCelular": {
+            "type": "string",
+            "example": ""
+          },
+          "cepImovel": {
+            "type": "string",
+            "example": "22793-081"
+          },
+          "valorAluguel": {
+            "type": "number",
+            "example": "1000"
+          },
+          "valorCondominio": {
+            "type": "number",
+            "example": "135"
+          },
+          "valorIPTU": {
+            "type": "number",
+            "example": "35"
+          },
+          "hasExtra": {
+            "type": "boolean"
+          },
+          "isMarried": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CardRentalBailResponse": {
+        "type": "object",
+        "properties": {
+          "codImobiliaria": {
+            "type": "number",
+            "example": "42670"
+          },
+          "tipoLocacao": {
+            "type": "string",
+            "example": "residencial"
+          },
+          "imovelPretendido": {
+            "type": "object",
+            "properties": {
+              "cep": {
+                "type": "string",
+                "example": "22793-081"
+              },
+              "endereco": {
+                "type": "string",
+                "example": "Rua teste"
+              },
+              "numero": {
+                "type": "number",
+                "example": "123"
+              },
+              "bairro": {
+                "type": "string",
+                "example": "Barra da tijuca"
+              },
+              "cidade": {
+                "type": "string",
+                "example": "Rio de Janeiro"
+              },
+              "estado": {
+                "type": "string",
+                "example": "RJ"
+              },
+              "complemento": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          },
+          "locatario": {
+            "type": "object",
+            "properties": {
+              "pretendente": {
+                "type": "object",
+                "properties": {
+                  "tipoPessoa": {
+                    "type": "string",
+                    "example": "fisica"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "example": "53503511768"
+                  },
+                  "rg": {
+                    "type": "object",
+                    "properties": {
+                      "numero": {
+                        "type": "string",
+                        "example": "89300000"
+                      },
+                      "expedicao": {
+                        "type": "string",
+                        "example": "20/12/2000"
+                      },
+                      "orgaoEmissor": {
+                        "type": "string",
+                        "example": "SSP"
+                      }
+                    }
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "João da Silva"
+                  },
+                  "dataNascimento": {
+                    "type": "string",
+                    "example": "16/12/1960"
+                  },
+                  "estadoCivil": {
+                    "type": "string",
+                    "example": "Solteiro(a)"
+                  },
+                  "celular": {
+                    "type": "string",
+                    "example": "(21) 97259-7078"
+                  },
+                  "fone": {
+                    "type": "string",
+                    "example": "(42) 99999-0000"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "jose.antonio-01@gmail.com"
+                  },
+                  "rendaBruta": {
+                    "type": "number",
+                    "example": "10000"
+                  },
+                  "profissao": {
+                    "type": "string",
+                    "example": "Empresario"
+                  },
+                  "vinculoEmpregaticio": {
+                    "type": "string",
+                    "example": "Empresario"
+                  }
+                }
+              },
+              "conjuge": {
+                "type": "object",
+                "properties": {
+                  "cpf": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "profissao": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "renda": {
+                    "type": "number",
+                    "example": 1000
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "celular": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              },
+              "solidario": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "cpf": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "profissao": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "celular": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "cpf": "",
+                    "nome": "",
+                    "profissao": "",
+                    "renda": "",
+                    "email": "",
+                    "celular": ""
+                  }
+                ]
+              }
+            }
+          },
+          "proprietarioImovel": {
+            "type": "object",
+            "properties": {
+              "tipoPessoa": {
+                "type": "string",
+                "example": "fisica"
+              },
+              "nome": {
+                "type": "string",
+                "example": "João da Silva"
+              },
+              "documento": {
+                "type": "string",
+                "example": "109.201.078-50"
+              },
+              "dataNascimento": {
+                "type": "string",
+                "example": "20/01/1985"
+              },
+              "estadoCivil": {
+                "type": "string",
+                "example": "Solteiro(a)"
+              },
+              "celular": {
+                "type": "string",
+                "example": "(42) 99999-0000"
+              }
+            }
+          },
+          "dadosContrato": {
+            "type": "object",
+            "properties": {
+              "indiceReajusteAluguel": {
+                "type": "string",
+                "example": "IGPM"
+              },
+              "valorMultasContratuais": {
+                "type": "number",
+                "example": "3000"
+              },
+              "prazoContratoMeses": {
+                "type": "number",
+                "example": "30"
+              },
+              "valorCondominio": {
+                "type": "number",
+                "example": "135"
+              },
+              "valorDanosAoImovel": {
+                "type": "number",
+                "example": "6000"
+              },
+              "valorAgua": {
+                "type": "number",
+                "example": "135"
+              },
+              "valorLuz": {
+                "type": "number",
+                "example": "235"
+              },
+              "valorGas": {
+                "type": "number",
+                "example": "35"
+              },
+              "valorIptu": {
+                "type": "number",
+                "example": "35"
+              },
+              "valorAluguel": {
+                "type": "number",
+                "example": "1000"
+              },
+              "inicioContrato": {
+                "type": "string",
+                "example": "29/01/2024"
+              },
+              "fimContrato": {
+                "type": "string",
+                "example": "29/07/2026"
+              },
+              "inicioSeguro": {
+                "type": "string",
+                "example": "29/01/2024"
+              },
+              "fimSeguro": {
+                "type": "string",
+                "example": "29/07/2026"
+              }
+            }
+          }
+        }
+      },
+      "CardRentalBailUpdate": {
+        "type": "object",
+        "properties": {
+          "codImobiliaria": {
+            "type": "number",
+            "example": "42670"
+          },
+          "tipoLocacao": {
+            "type": "string",
+            "example": "residencial"
+          },
+          "cep": {
+            "type": "string",
+            "example": "22793-081"
+          },
+          "endereco": {
+            "type": "string",
+            "example": "Rua teste"
+          },
+          "numero": {
+            "type": "number",
+            "example": "123"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Barra da tijuca"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "Rio de Janeiro"
+          },
+          "estado": {
+            "type": "string",
+            "example": "RJ"
+          },
+          "complemento": {
+            "type": "string",
+            "example": ""
+          },
+          "tipoPessoa": {
+            "type": "string",
+            "example": "fisica"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "53503511768"
+          },
+          "expedicao": {
+            "type": "string",
+            "example": "20/12/2000"
+          },
+          "orgaoEmissor": {
+            "type": "string",
+            "example": "SSP"
+          },
+          "nome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "example": "16/12/1960"
+          },
+          "estadoCivil": {
+            "type": "string",
+            "example": "Solteiro(a)"
+          },
+          "celular": {
+            "type": "string",
+            "example": "(21) 97259-7078"
+          },
+          "fone": {
+            "type": "string",
+            "example": "(42) 99999-0000"
+          },
+          "email": {
+            "type": "string",
+            "example": "jose.antonio-01@gmail.com"
+          },
+          "rendaBruta": {
+            "type": "number",
+            "example": "10000"
+          },
+          "documento": {
+            "type": "string",
+            "example": "109.201.078-50"
+          },
+          "indiceReajusteAluguel": {
+            "type": "string",
+            "example": "IGPM"
+          },
+          "valorMultasContratuais": {
+            "type": "number",
+            "example": "3000"
+          },
+          "prazoContratoMeses": {
+            "type": "number",
+            "example": "30"
+          },
+          "valorCondominio": {
+            "type": "number",
+            "example": "135"
+          },
+          "valorDanosAoImovel": {
+            "type": "number",
+            "example": "6000"
+          },
+          "valorAgua": {
+            "type": "number",
+            "example": "135"
+          },
+          "valorLuz": {
+            "type": "number",
+            "example": "235"
+          },
+          "valorGas": {
+            "type": "number",
+            "example": "35"
+          },
+          "valorIptu": {
+            "type": "number",
+            "example": "35"
+          },
+          "valorAluguel": {
+            "type": "number",
+            "example": "1000"
+          },
+          "inicioContrato": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "fimContrato": {
+            "type": "string",
+            "example": "29/07/2026"
+          },
+          "inicioVigencia": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "fimVigencia": {
+            "type": "string",
+            "example": "29/07/2026"
+          },
+          "locadorNome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "locadorCPF": {
+            "type": "string",
+            "example": "109.201.078-50"
+          },
+          "locadorCEP": {
+            "type": "string",
+            "example": "14140010"
+          },
+          "locadorEmail": {
+            "type": "string",
+            "example": "joao@email.com"
+          },
+          "locadorCelular": {
+            "type": "string",
+            "example": "(42) 99999-0000"
+          }
+        }
+      },
+      "CardRentalBailUpdatedResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "Dados atualizados com sucesso!"
+          }
+        }
+      },
+      "CardRentalBailContract": {
+        "type": "object",
+        "properties": {
+          "insurance": {
+            "type": "string",
+            "example": "porto"
+          }
+        }
+      },
+      "CardRentalBailContractResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "O seguro {nome da seguradora} esta sendo contratado!"
+          }
+        }
+      },
+      "CardRentalBailProposeResponse": {
+        "type": "object",
+        "properties": {
+          "ofertas": {
+            "type": "object",
+            "properties": {
+              "portoSeguro": {
+                "type": "object",
+                "example": "150"
+              },
+              "portoSeguroEssencial": {
+                "type": "object",
+                "example": "150"
+              },
+              "too": {
+                "type": "object",
+                "example": "150"
+              },
+              "pottencial": {
+                "type": "object",
+                "example": "150"
+              },
+              "tokioMarine": {
+                "type": "object",
+                "example": "150"
+              }
+            }
+          }
+        }
+      },
+      "CardRentalBailList": {
+        "type": "object"
+      },
+      "UpdateCommissionRentalBailProposeRequest": {
+        "type": "object",
+        "properties": {
+          "portoSeguro": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "^(0(\\.\\d+)?|1(\\.0+)?)$",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "portoSeguroEssencial": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "too": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "pottencial": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "tokioMarine": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          }
+        }
+      },
+      "UpdateCommissionRentalBailProposeResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "Dados atualizados com sucesso!"
+          },
+          "insuranceUpdated": {
+            "type": "array"
+          }
+        }
+      },
+      "CardRentalBailCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "example": "65bbe378891050473a808ce6"
+          }
+        }
+      },
+      "CardPropertyProtection": {
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "cnpj": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "tipoPessoa": {
+            "type": "string",
+            "example": "1"
+          },
+          "cepLocalRisco": {
+            "type": "string",
+            "example": "88509016"
+          },
+          "tipoLogradouro": {
+            "type": "string",
+            "example": "R"
+          },
+          "logradouro": {
+            "type": "string",
+            "example": "AVENIDA MARECHAL CASTELO BRANCO"
+          },
+          "numero": {
+            "type": "string",
+            "example": "616"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Universitario"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "LAGES"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SC"
+          },
+          "codigoTipoImovel": {
+            "type": "string",
+            "example": "6"
+          },
+          "valorAluguel": {
+            "type": "number",
+            "example": "3000"
+          },
+          "flagResidencial": {
+            "type": "string",
+            "example": "S"
+          },
+          "nomeProponente": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "complemento": {
+            "type": "string",
+            "example": "teste"
+          }
+        }
+      },
+      "CardPropertyProtectionCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "example": "65bbe378891050473a808ce6"
+          }
+        }
+      },
+      "CardPropertyProtectionResponse": {
+        "type": "object",
+        "properties": {
+          "susepOrcamento": {
+            "type": "string",
+            "example": "26L93J"
+          },
+          "flagImprimirOperacaoOrcamento": {
+            "type": "number",
+            "example": "1"
+          },
+          "codigoOperacao": {
+            "type": "number",
+            "example": "68"
+          },
+          "codigoParceiroNegocio": {
+            "type": "number",
+            "example": "61729"
+          },
+          "dataVigenciaInicial": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "dataVigenciaFinal": {
+            "type": "string",
+            "example": "29/01/2025"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "10920107850"
+          },
+          "nomeProponente": {
+            "type": "string",
+            "example": "Joao"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "example": "25/03/1986"
+          },
+          "tipoTelefone": {
+            "type": "number",
+            "example": "3"
+          },
+          "telefoneCompleto": {
+            "type": "string",
+            "example": "21982444801"
+          },
+          "tipoPessoa": {
+            "type": "number",
+            "example": "1"
+          },
+          "flagProponenteProprietario": {
+            "type": "string",
+            "example": "N"
+          },
+          "cepLocalRisco": {
+            "type": "string",
+            "example": "88509016"
+          },
+          "tipoLogradouro": {
+            "type": "string",
+            "example": "R"
+          },
+          "logradouro": {
+            "type": "string",
+            "example": "AVENIDA MARECHAL CASTELO BRANCO"
+          },
+          "numero": {
+            "type": "number",
+            "example": "616"
+          },
+          "complemento": {
+            "type": "string",
+            "example": "teste"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Universitario"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "LAGES"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SC"
+          },
+          "codigoTipoImovel": {
+            "type": "number",
+            "example": "6"
+          },
+          "cepEnderecoSegurado": {
+            "type": "string",
+            "example": "S"
+          },
+          "flagResidencial": {
+            "type": "string",
+            "example": "S"
+          },
+          "codigoClausulaServico": {
+            "type": "number",
+            "example": "479"
+          },
+          "valorCoberturaIncendio": {
+            "type": "number",
+            "example": "300000"
+          },
+          "valorCoberturaPerdaAluguel": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaVendaval": {
+            "type": "number",
+            "example": "6500"
+          },
+          "valorCoberturaResponsabilidadeCivil": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaConteudo": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaDanosEletricos": {
+            "type": "number",
+            "example": "10000"
+          }
+        }
+      },
+      "CardPropertyProtectionUpdate": {
+        "type": "object",
+        "properties": {
+          "susepOrcamento": {
+            "type": "string",
+            "example": "TST01J"
+          },
+          "flagImprimirOperacaoOrcamento": {
+            "type": "number",
+            "example": "1"
+          },
+          "codigoOperacao": {
+            "type": "number",
+            "example": "68"
+          },
+          "codigoParceiroNegocio": {
+            "type": "string",
+            "example": "23939"
+          },
+          "dataVigenciaInicial": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "dataVigenciaFinal": {
+            "type": "string",
+            "example": "29/01/2025"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "nomeProponente": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "example": "25/03/1986"
+          },
+          "tipoTelefone": {
+            "type": "number",
+            "example": "3"
+          },
+          "telefoneCompleto": {
+            "type": "string",
+            "example": "21982444801"
+          },
+          "tipoPessoa": {
+            "type": "number",
+            "example": "1"
+          },
+          "flagProponenteProprietario": {
+            "type": "string",
+            "example": "N"
+          },
+          "cepLocalRisco": {
+            "type": "string",
+            "example": "88509016"
+          },
+          "tipoLogradouro": {
+            "type": "string",
+            "example": "R"
+          },
+          "logradouro": {
+            "type": "string",
+            "example": "AVENIDA MARECHAL CASTELO BRANCO"
+          },
+          "numero": {
+            "type": "number",
+            "example": "616"
+          },
+          "complemento": {
+            "type": "string",
+            "example": "teste"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Universitario"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "LAGES"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SC"
+          },
+          "codigoTipoImovel": {
+            "type": "number",
+            "example": "6"
+          },
+          "cepEnderecoSegurado": {
+            "type": "string",
+            "example": "S"
+          },
+          "flagResidencial": {
+            "type": "string",
+            "example": "S"
+          },
+          "codigoClausulaServico": {
+            "type": "number",
+            "example": "479"
+          },
+          "valorCoberturaIncendio": {
+            "type": "number",
+            "example": "300000"
+          },
+          "valorCoberturaPerdaAluguel": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaVendaval": {
+            "type": "number",
+            "example": "6500"
+          },
+          "valorCoberturaResponsabilidadeCivil": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaConteudo": {
+            "type": "number",
+            "example": "30000"
+          },
+          "valorCoberturaDanosEletricos": {
+            "type": "number",
+            "example": "10000"
+          },
+          "email": {
+            "type": "string",
+            "example": "email@teste.com"
+          },
+          "celular": {
+            "type": "string",
+            "example": "21982444801"
+          },
+          "sexo": {
+            "type": "string",
+            "example": "M"
+          },
+          "codigoFormaPagamento": {
+            "type": "number",
+            "example": "62"
+          },
+          "cpfBeneficiario": {
+            "type": "string",
+            "example": "32452179515"
+          },
+          "nomeBeneficiario": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          }
+        }
+      },
+      "CardPropertyProtectionUpdatedResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "Dados atualizados com sucesso!"
+          }
+        }
+      },
+      "CardPropertyProtectionContract": {
+        "type": "object",
+        "properties": {
+          "insurance": {
+            "type": "string",
+            "example": "porto"
+          }
+        }
+      },
+      "CardPropertyProtectionContractResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "O seguro {nome do seguro} esta sendo contratado!"
+          }
+        }
+      },
+      "CardPropertyProtectionProposeResponse": {
+        "type": "object",
+        "properties": {
+          "valorPremioTotalAVista": {
+            "type": "object",
+            "properties": {
+              "tipo": {
+                "type": "string",
+                "example": "Decimal"
+              },
+              "content": {
+                "type": "number",
+                "example": "220.28"
+              }
+            }
+          },
+          "valorPremioLiquido": {
+            "type": "object",
+            "properties": {
+              "tipo": {
+                "type": "string",
+                "example": "Decimal"
+              },
+              "content": {
+                "type": "number",
+                "example": "205.1389"
+              }
+            }
+          },
+          "valorPremioLiquidoTotal": {
+            "type": "object",
+            "properties": {
+              "tipo": {
+                "type": "string",
+                "example": "Decimal"
+              },
+              "content": {
+                "type": "number",
+                "example": "205.1389"
+              }
+            }
+          },
+          "percentualComissao": {
+            "type": "number",
+            "example": "65"
+          },
+          "parcelamento": {
+            "type": "object",
+            "properties": {
+              "encargos": {
+                "type": "number",
+                "example": "0"
+              },
+              "iof": {
+                "type": "number",
+                "example": "15.14"
+              },
+              "codigo": {
+                "type": "number",
+                "example": "41"
+              },
+              "custoapolice": {
+                "type": "object",
+                "properties": {
+                  "tipo": {
+                    "type": "string",
+                    "example": "Decimal"
+                  },
+                  "content": {
+                    "type": "number",
+                    "example": "0"
+                  }
+                }
+              },
+              "qtdParcelas": {
+                "type": "number",
+                "example": "4"
+              },
+              "juros": {
+                "type": "number",
+                "example": "0"
+              },
+              "valorDemaisParcelas": {
+                "type": "number",
+                "example": "55.07"
+              },
+              "valor1aParcela": {
+                "type": "number",
+                "example": "55.07"
+              },
+              "descricao": {
+                "type": "string",
+                "example": "4 x FATURA MENSAL - SEM ENTRADA"
+              }
+            }
+          },
+          "comissaoTotal": {
+            "type": "number",
+            "example": "133.340285"
+          },
+          "comissaoParceiro": {
+            "type": "string",
+            "example": "40.00"
+          }
+        }
+      },
+      "CardPropertyProtectionPolicyDeleteResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "A apolice esta sendo excluida!"
+          }
+        }
+      },
+      "CardPropertyProtectionList": {
+        "type": "object"
+      },
+      "FileBase64": {
+        "type": "string",
+        "example": "xXzaEQ64XVsdgq..."
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "number"
+          },
+          "error": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "documentation": {
+            "type": "string"
+          }
+        }
+      },
+      "cardId": {
+        "type": "string",
+        "example": "65bbe378891050473a808ce6"
+      },
+      "page": {
+        "type": "string",
+        "example": "1"
+      },
+      "limit": {
+        "type": "string",
+        "example": "10"
+      },
+      "any": {
+        "type": "object",
+        "properties": {
+          "object": {
+            "type": "string",
+            "example": "a custom object"
+          }
+        }
+      },
+      "anyArr": {
+        "type": "array",
+        "properties": {
+          "object": {
+            "type": "string",
+            "example": "a custom object"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "x-access-token",
+        "in": "header"
+      }
+    }
+  }
+}

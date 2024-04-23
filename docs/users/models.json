@@ -1,0 +1,136 @@
+{
+  "components": {
+    "schemas": {
+      "UserAuth": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          }
+        },
+        "required": ["username", "password"]
+      },
+      "AuthenticatedUserResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          },
+          "token": {
+            "$ref": "#/components/schemas/accessToken"
+          },
+          "roles": {
+            "$ref": "#/components/schemas/roles"
+          }
+        }
+      },
+      "CreateUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "cnpj": {
+            "type": "string"
+          },
+          "razaoSocial": {
+            "type": "string"
+          },
+          "susepPort": {
+            "type": "string"
+          },
+          "orcamentoExterno": {
+            "type": "string"
+          },
+          "codigoPorto": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": ["username", "email", "password"]
+      },
+      "UserCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          }
+        }
+      },
+      "UserProfileResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Claudio Raimundo Andra Teixeira"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com",
+            "description": "admin@forcetech.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "test123"
+          },
+          "id": {
+            "type": "string",
+            "example": "650076057e35dc5b777678f4"
+          }
+        }
+      },
+      "roles": {
+        "type": "array",
+        "example": "['admin']"
+      },
+      "accessToken": {
+        "type": "string",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTW9sZHN5c3RlbSIsImVtYWlsIjoibW9sZHN5c3RlbUBtb2xkc3lzdGVtLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHNxaHFaV2NvQThhL1RVeWttSmhyUGV0aklTYmJQdmZ3MVJaYjhEZWVTYnlUcEVwZGRSU2hXIiwiaWQiOiI2NTAwNzYwNTdlMzVkYzViNzc3Njc4ZjQiLCJpYXQiOjE3MDI2MDc1NjgsImV4cCI6MTcwMjYyNzU2OH0.6cFeKDQRjC23t-GXq7FSF6GV37dsYy74AEV4SVd4rJI"
+      }
+    }
+  }
+}

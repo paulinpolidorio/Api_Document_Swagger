@@ -1,0 +1,40 @@
+{
+    "paths":{
+        "partners-list": {
+            "get": {
+              "tags": ["Gerenciamento de Parceiros"],
+              "description": "Obter a Lista de Parceiros",
+              "summary": "Obter a Lista de Parceiros",
+              "operationId": "getPartnersList",
+              "parameters": [],
+              "responses": {
+                "200": {
+                  "description": "The last 10 cardsIds created",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/anyArr"
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Invalid parameters",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "../api_doc_models.json#/components/schemas/Error"
+                      },
+                      "example": {
+                        "message": "Invalid parameters",
+                        "code": "400",
+                        "error": "Bad Request"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+    }
+}

@@ -1,0 +1,688 @@
+{
+  "components": {
+    "schemas": {
+      "CardRentalBail": {
+        "type": "object",
+        "properties": {
+          "codImobiliaria": {
+            "type": "number",
+            "example": 668246
+          },
+          "cpf": {
+            "type": "string",
+            "example": "535.035.117-68"
+          },
+          "nome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "profissao": {
+            "type": "string",
+            "example": "Empresario"
+          },
+          "vinculoEmpregaticio": {
+            "type": "string",
+            "example": "Empresario"
+          },
+          "renda": {
+            "type": "number",
+            "example": 10000
+          },
+          "email": {
+            "type": "string",
+            "example": "jose.antonio-01@gmail.com"
+          },
+          "celular": {
+            "type": "string",
+            "example": "(21) 97259-7078"
+          },
+          "conjugueCpf": {
+            "type": "string",
+            "example": "111.111.111-11"
+          },
+          "conjugueNome": {
+            "type": "string",
+            "example": "Maria da Silva"
+          },
+          "conjugueProfissao": {
+            "type": "string",
+            "example": "Empresario"
+          },
+          "conjugueRenda": {
+            "type": "number",
+            "example": "123213"
+          },
+          "conjugueEmail": {
+            "type": "string",
+            "example": "maria@email.com"
+          },
+          "conjugueCelular": {
+            "type": "string",
+            "example": "(99) 99999-9999"
+          },
+          "solidarioCpf": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioNome": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioProfissao": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioRenda": {
+            "type": "number",
+            "example": ""
+          },
+          "solidarioEmail": {
+            "type": "string",
+            "example": ""
+          },
+          "solidarioCelular": {
+            "type": "string",
+            "example": ""
+          },
+          "cepImovel": {
+            "type": "string",
+            "example": "22793-081"
+          },
+          "valorAluguel": {
+            "type": "number",
+            "example": "1000"
+          },
+          "valorCondominio": {
+            "type": "number",
+            "example": "135"
+          },
+          "valorIPTU": {
+            "type": "number",
+            "example": "35"
+          },
+          "hasExtra": {
+            "type": "boolean"
+          },
+          "isMarried": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CardRentalBailCreatedResponse": {
+        "type": "object",
+        "properties": {
+          "cardId": {
+            "type": "string",
+            "example": "65bbe378891050473a808ce6"
+          }
+        }
+      },
+      "CardRentalBailResponse": {
+        "type": "object",
+        "properties": {
+          "codImobiliaria": {
+            "type": "number",
+            "example": "42670"
+          },
+          "tipoLocacao": {
+            "type": "string",
+            "example": "residencial"
+          },
+          "imovelPretendido": {
+            "type": "object",
+            "properties": {
+              "cep": {
+                "type": "string",
+                "example": "22793-081"
+              },
+              "endereco": {
+                "type": "string",
+                "example": "Rua teste"
+              },
+              "numero": {
+                "type": "number",
+                "example": "123"
+              },
+              "bairro": {
+                "type": "string",
+                "example": "Barra da tijuca"
+              },
+              "cidade": {
+                "type": "string",
+                "example": "Rio de Janeiro"
+              },
+              "estado": {
+                "type": "string",
+                "example": "RJ"
+              },
+              "complemento": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          },
+          "locatario": {
+            "type": "object",
+            "properties": {
+              "pretendente": {
+                "type": "object",
+                "properties": {
+                  "tipoPessoa": {
+                    "type": "string",
+                    "example": "fisica"
+                  },
+                  "cpf": {
+                    "type": "string",
+                    "example": "53503511768"
+                  },
+                  "rg": {
+                    "type": "object",
+                    "properties": {
+                      "numero": {
+                        "type": "string",
+                        "example": "89300000"
+                      },
+                      "expedicao": {
+                        "type": "string",
+                        "example": "20/12/2000"
+                      },
+                      "orgaoEmissor": {
+                        "type": "string",
+                        "example": "SSP"
+                      }
+                    }
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": "João da Silva"
+                  },
+                  "dataNascimento": {
+                    "type": "string",
+                    "example": "16/12/1960"
+                  },
+                  "estadoCivil": {
+                    "type": "string",
+                    "example": "Solteiro(a)"
+                  },
+                  "celular": {
+                    "type": "string",
+                    "example": "(21) 97259-7078"
+                  },
+                  "fone": {
+                    "type": "string",
+                    "example": "(42) 99999-0000"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "jose.antonio-01@gmail.com"
+                  },
+                  "rendaBruta": {
+                    "type": "number",
+                    "example": "10000"
+                  },
+                  "profissao": {
+                    "type": "string",
+                    "example": "Empresario"
+                  },
+                  "vinculoEmpregaticio": {
+                    "type": "string",
+                    "example": "Empresario"
+                  }
+                }
+              },
+              "conjuge": {
+                "type": "object",
+                "properties": {
+                  "cpf": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "nome": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "profissao": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "renda": {
+                    "type": "number",
+                    "example": 1000
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "celular": {
+                    "type": "string",
+                    "example": ""
+                  }
+                }
+              },
+              "solidario": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "cpf": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "nome": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "profissao": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "celular": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "cpf": "",
+                    "nome": "",
+                    "profissao": "",
+                    "renda": "",
+                    "email": "",
+                    "celular": ""
+                  }
+                ]
+              }
+            }
+          },
+          "proprietarioImovel": {
+            "type": "object",
+            "properties": {
+              "tipoPessoa": {
+                "type": "string",
+                "example": "fisica"
+              },
+              "nome": {
+                "type": "string",
+                "example": "João da Silva"
+              },
+              "documento": {
+                "type": "string",
+                "example": "109.201.078-50"
+              },
+              "dataNascimento": {
+                "type": "string",
+                "example": "20/01/1985"
+              },
+              "estadoCivil": {
+                "type": "string",
+                "example": "Solteiro(a)"
+              },
+              "celular": {
+                "type": "string",
+                "example": "(42) 99999-0000"
+              }
+            }
+          },
+          "dadosContrato": {
+            "type": "object",
+            "properties": {
+              "indiceReajusteAluguel": {
+                "type": "string",
+                "example": "IGPM"
+              },
+              "valorMultasContratuais": {
+                "type": "number",
+                "example": "3000"
+              },
+              "prazoContratoMeses": {
+                "type": "number",
+                "example": "30"
+              },
+              "valorCondominio": {
+                "type": "number",
+                "example": "135"
+              },
+              "valorDanosAoImovel": {
+                "type": "number",
+                "example": "6000"
+              },
+              "valorAgua": {
+                "type": "number",
+                "example": "135"
+              },
+              "valorLuz": {
+                "type": "number",
+                "example": "235"
+              },
+              "valorGas": {
+                "type": "number",
+                "example": "35"
+              },
+              "valorIptu": {
+                "type": "number",
+                "example": "35"
+              },
+              "valorAluguel": {
+                "type": "number",
+                "example": "1000"
+              },
+              "inicioContrato": {
+                "type": "string",
+                "example": "29/01/2024"
+              },
+              "fimContrato": {
+                "type": "string",
+                "example": "29/07/2026"
+              },
+              "inicioSeguro": {
+                "type": "string",
+                "example": "29/01/2024"
+              },
+              "fimSeguro": {
+                "type": "string",
+                "example": "29/07/2026"
+              }
+            }
+          }
+        }
+      },
+      "CardRentalBailUpdate": {
+        "type": "object",
+        "properties": {
+          "codImobiliaria": {
+            "type": "number",
+            "example": "42670"
+          },
+          "tipoLocacao": {
+            "type": "string",
+            "example": "residencial"
+          },
+          "cep": {
+            "type": "string",
+            "example": "22793-081"
+          },
+          "endereco": {
+            "type": "string",
+            "example": "Rua teste"
+          },
+          "numero": {
+            "type": "number",
+            "example": "123"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Barra da tijuca"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "Rio de Janeiro"
+          },
+          "estado": {
+            "type": "string",
+            "example": "RJ"
+          },
+          "complemento": {
+            "type": "string",
+            "example": ""
+          },
+          "tipoPessoa": {
+            "type": "string",
+            "example": "fisica"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "53503511768"
+          },
+          "expedicao": {
+            "type": "string",
+            "example": "20/12/2000"
+          },
+          "orgaoEmissor": {
+            "type": "string",
+            "example": "SSP"
+          },
+          "nome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "example": "16/12/1960"
+          },
+          "estadoCivil": {
+            "type": "string",
+            "example": "Solteiro(a)"
+          },
+          "celular": {
+            "type": "string",
+            "example": "(21) 97259-7078"
+          },
+          "fone": {
+            "type": "string",
+            "example": "(42) 99999-0000"
+          },
+          "email": {
+            "type": "string",
+            "example": "jose.antonio-01@gmail.com"
+          },
+          "rendaBruta": {
+            "type": "number",
+            "example": "10000"
+          },
+          "documento": {
+            "type": "string",
+            "example": "109.201.078-50"
+          },
+          "indiceReajusteAluguel": {
+            "type": "string",
+            "example": "IGPM"
+          },
+          "valorMultasContratuais": {
+            "type": "number",
+            "example": "3000"
+          },
+          "prazoContratoMeses": {
+            "type": "number",
+            "example": "30"
+          },
+          "valorCondominio": {
+            "type": "number",
+            "example": "135"
+          },
+          "valorDanosAoImovel": {
+            "type": "number",
+            "example": "6000"
+          },
+          "valorAgua": {
+            "type": "number",
+            "example": "135"
+          },
+          "valorLuz": {
+            "type": "number",
+            "example": "235"
+          },
+          "valorGas": {
+            "type": "number",
+            "example": "35"
+          },
+          "valorIptu": {
+            "type": "number",
+            "example": "35"
+          },
+          "valorAluguel": {
+            "type": "number",
+            "example": "1000"
+          },
+          "inicioContrato": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "fimContrato": {
+            "type": "string",
+            "example": "29/07/2026"
+          },
+          "inicioVigencia": {
+            "type": "string",
+            "example": "29/01/2024"
+          },
+          "fimVigencia": {
+            "type": "string",
+            "example": "29/07/2026"
+          },
+          "locadorNome": {
+            "type": "string",
+            "example": "João da Silva"
+          },
+          "locadorCPF": {
+            "type": "string",
+            "example": "109.201.078-50"
+          },
+          "locadorCEP": {
+            "type": "string",
+            "example": "14140010"
+          },
+          "locadorEmail": {
+            "type": "string",
+            "example": "joao@email.com"
+          },
+          "locadorCelular": {
+            "type": "string",
+            "example": "(42) 99999-0000"
+          }
+        }
+      },
+      "CardRentalBailUpdatedResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "Dados atualizados com sucesso!"
+          }
+        }
+      },
+      "CardRentalBailContract": {
+        "type": "object",
+        "properties": {
+          "insurance": {
+            "type": "string",
+            "example": "porto"
+          }
+        }
+      },
+      "CardRentalBailContractResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "O seguro {nome da seguradora} esta sendo contratado!"
+          }
+        }
+      },
+      "CardRentalBailProposeResponse": {
+        "type": "object",
+        "properties": {
+          "ofertas": {
+            "type": "object",
+            "properties": {
+              "portoSeguro": {
+                "type": "object",
+                "example": "150"
+              },
+              "portoSeguroEssencial": {
+                "type": "object",
+                "example": "150"
+              },
+              "too": {
+                "type": "object",
+                "example": "150"
+              },
+              "pottencial": {
+                "type": "object",
+                "example": "150"
+              },
+              "tokioMarine": {
+                "type": "object",
+                "example": "150"
+              }
+            }
+          }
+        }
+      },
+      "CardRentalBailList": {
+        "type": "object"
+      },
+      "page": {
+        "type": "string",
+        "example": "1"
+      },
+      "limit": {
+        "type": "string",
+        "example": "10"
+      },
+      "UpdateCommissionRentalBailProposeRequest": {
+        "type": "object",
+        "properties": {
+          "portoSeguro": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "^(0(\\.\\d+)?|1(\\.0+)?)$",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "portoSeguroEssencial": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "too": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "pottencial": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          },
+          "tokioMarine": {
+            "type": "number",
+            "example": 0.15,
+            "pattern": "0.15",
+            "description": "valores entre 0 - 1 indicando a porcentagem a ser aplicada"
+          }
+        }
+      },
+      "UpdateCommissionRentalBailProposeResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "number",
+            "example": "200"
+          },
+          "mensagem": {
+            "type": "string",
+            "example": "Dados atualizados com sucesso!"
+          },
+          "insuranceUpdated": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  }
+}
